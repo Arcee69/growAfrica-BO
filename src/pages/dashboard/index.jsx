@@ -315,7 +315,7 @@ const Dashboard = () => {
             loadingTransactionData ? (
             <Skeleton variant='rectangular' width="350px" height="402px"  style={{ backgroundColor: 'rgba(0,0,0, 0.06)', borderRadius: "8px"}} />
             ) : (
-            <div className='w-[540px] h-[402px] bg-[#fff] rounded-lg flex p-6 flex-col'>
+            <div className='w-[540px] h-[402px] bg-[#fff] overflow-auto rounded-lg flex p-6 flex-col'>
                 <div className='flex items-center justify-between'>
                 <p className='font-Hat text-[#3F434A] font-medium text-[20px]'>Transactions</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="4" viewBox="0 0 20 4" fill="none">

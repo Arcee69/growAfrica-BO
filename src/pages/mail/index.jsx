@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Vendors = () => {
+const Mailing = () => {
   return (
     <div className='p-8'>
-        Vendors
+        Mailing
     </div>
   )
 }
 
-export default Vendors
+export default Mailing

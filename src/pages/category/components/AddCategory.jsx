@@ -21,7 +21,7 @@ const AddCategory = ({ handleClose, addCategoryLoading, getAllCategory, setAddCa
         const data = {
             name: values?.categoryName,
         }
-        api.post(appUrls?.GET_PRODUCTS_CATEGORY_URL, data)
+        api.post(appUrls?.ADD_CATEGORY_URL, data)
         .then((res) => {
             console.log(res, "john")
             setAddCategoryLoading(false)
@@ -103,7 +103,7 @@ const AddCategory = ({ handleClose, addCategoryLoading, getAllCategory, setAddCa
                             <button
                                 className="w-[228px] font-inter flex items-center justify-center h-[46px] bg-[#50724D] text-lg rounded text-center"
                                 type="submit"
-                                disabled={addCategoryLoading}
+                                // disabled={addCategoryLoading}
                             >
                                 <p className='text-[#fff] text-sm font-semibold'>{addCategoryLoading ? <CgSpinner className=" animate-spin text-xl " /> : 'Save Category'}</p>
                                 

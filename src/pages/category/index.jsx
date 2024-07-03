@@ -11,6 +11,7 @@ import AddCategory from './components/AddCategory';
 
 const Category = () => {
     const [loading, setLoading] = useState(false)
+    const [deleteLoading, setDeleteLoading] = useState(false)
     const [addCategoryLoading, setAddCategoryLoading] = useState(false)
     const [allCategory, setAllCategory] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
@@ -38,7 +39,7 @@ const Category = () => {
     
       useEffect(() => {
         getAllCategory()
-      }, [searchTerm, addCategoryLoading])
+      }, [searchTerm, addCategoryLoading, deleteLoading])
 
       const handleText = (e) => setSearchTerm(e.target.value)
 
@@ -85,11 +86,11 @@ const Category = () => {
             </p>
         </div>
         <hr />
-        {activeTab === "All" && <AllCategories allCategory={allCategory} loading={loading} handleText={(e) => handleText(e)} />}
+        {activeTab === "All" && <AllCategories allCategory={allCategory} loading={loading} deleteLoading={deleteLoading} setDeleteLoading={setDeleteLoading} handleText={(e) => handleText(e)} />}
         <ModalPop isOpen={openAddCategory}>
             <AddCategory 
                 handleClose={() => setOpenAddCategory(false)} 
-                setAddCategoryLoading={() => setAddCategoryLoading()}
+                setAddCategoryLoading={setAddCategoryLoading}
                 addCategoryLoading={addCategoryLoading}
                 getAllCategory={getAllCategory}
             />

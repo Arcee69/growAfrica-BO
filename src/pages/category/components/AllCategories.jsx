@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Skeleton } from '@mui/material'
 import { CiSearch } from 'react-icons/ci'
 import ReactPaginate from 'react-paginate'
+import { MdDeleteForever } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import { api } from '../../../services/api'
 import { appUrls } from '../../../services/urls'
 
 import Empty from "../../../assets/png/empty.png"
 
-const allCategories = ({ loading, allCategory, handleText }) => {  
+const allCategories = ({ loading, allCategory, handleText, deleteLoading, setDeleteLoading }) => {  
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10)
     const [itemOffset, setItemOffset] = useState(0);
@@ -30,6 +32,28 @@ const allCategories = ({ loading, allCategory, handleText }) => {
         setItemOffset(newOffset);
     };
 
+    const deleteCategory = async (item) => {
+        console.log(item, "zanku")
+        setDeleteLoading(true)
+        try {
+            const res = await api.delete(`${appUrls?.DELETE_CATEGORY_URL}/${item?.id}`);
+            setDeleteLoading(false)
+            toast(`${res?.data?.message}`, {
+                position: "top-right",
+                autoClose: 5000,
+                closeOnClick: true,
+            });
+        } catch (err) {
+            setDeleteLoading(false)
+            console.log(err, 'Casper');
+            toast(`${err?.data?.message}`, {
+                position: "top-right",
+                autoClose: 5000,
+                closeOnClick: true,
+            });
+        } 
+    };
+
   return (
     <div className='mt-6'>
     <div className='flex items-center justify-between'>
@@ -45,7 +69,7 @@ const allCategories = ({ loading, allCategory, handleText }) => {
       </div>
     </div>
     {
-       loading ?
+       loading || deleteLoading ?
        <Skeleton  variant="rectangular" width={1080} height={1000} style={{ backgroundColor: 'rgba(0,0,0, 0.06)', marginTop: "20px" }} />
        :
        <>
@@ -59,6 +83,9 @@ const allCategories = ({ loading, allCategory, handleText }) => {
                 </th>
                 <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
                     Created Date
+                </th>
+                <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
+                    Action
                 </th>
               </tr>
 
@@ -74,6 +101,11 @@ const allCategories = ({ loading, allCategory, handleText }) => {
                         </td>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-Mont text-dark-100 text-left'>{new Date(data?.created_at).toLocaleDateString()}</p>
+                        </td>
+                        <td className='h-[70px] px-4'>
+                            <div className='flex items-center gap-2'> 
+                                <MdDeleteForever className='text-[#f00] w-5 h-5 cursor-pointer' onClick={() => deleteCategory(data)}/>
+                            </div>
                         </td>
                       
                     </tr>

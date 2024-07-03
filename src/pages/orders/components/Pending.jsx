@@ -18,45 +18,6 @@ const Pending = ({ allPendingOrders, loading }) => {
 
   const handleText = (e) => setText(e.target.value)
 
-  // const allPendingOrder = [
-  //   {
-  //     id: "#0007366388",
-  //     created: "2 min ago",
-  //     customer: "Bola Ventures",
-  //     total: "₦546",
-  //     status: "Pending",
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     created: "2 min ago",
-  //     customer: "Bola Ventures",
-  //     total: "₦546",
-  //     status: "Pending",
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     created: "2 min ago",
-  //     customer: "Bola Ventures",
-  //     total: "₦546",
-  //     status: "Pending",
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     created: "2 min ago",
-  //     customer: "Bola Ventures",
-  //     total: "₦546",
-  //     status: "Pending",
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     created: "2 min ago",
-  //     customer: "Bola Ventures",
-  //     total: "₦546",
-  //     status: "Pending",
-  //   },
-
-  // ]
-
   function timeAgo(dateString) {
     const currentDate = new Date();
     const inputDate = new Date(dateString);

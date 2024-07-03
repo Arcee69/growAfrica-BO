@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import Empty from "../../../assets/png/empty.png"
 
-const Cancelled = () => {
+const Cancelled = ({ loading, allReturnedOrders}) => {
   const [text, setText] = useState("")
   const [tasks, setTasks] = useState([]);
   const [page, setPage] = useState(1);
@@ -17,56 +17,16 @@ const Cancelled = () => {
 
   const handleText = (e) => setText(e.target.value)
 
-  const allCancelledOrder = [
-    {
-      id: "#0007366388",
-      created: "2 min ago",
-      customer: "Bola Ventures",
-      total: "₦546",
-      status: "Cancelled",
-    },
-    {
-      id: "#0007366388",
-      created: "2 min ago",
-      customer: "Bola Ventures",
-      total: "₦546",
-      status: "Cancelled",
-    },
-    {
-      id: "#0007366388",
-      created: "2 min ago",
-      customer: "Bola Ventures",
-      total: "₦546",
-      status: "Cancelled",
-    },
-    {
-      id: "#0007366388",
-      created: "2 min ago",
-      customer: "Bola Ventures",
-      total: "₦546",
-      status: "Cancelled",
-    },
-    {
-      id: "#0007366388",
-      created: "2 min ago",
-      customer: "Bola Ventures",
-      total: "₦546",
-      status: "Cancelled",
-    },
-
-  ]
-
-
     //Get Current data
     const endOffset = itemOffset + perPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allCancelledOrder.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allCancelledOrder.length / perPage);
+    const currentData = allReturnedOrders.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(allReturnedOrders.length / perPage);
 
 
     //Change Page 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * perPage) % allCancelledOrder.length;
+        const newOffset = (event.selected * perPage) % allReturnedOrders.length;
         console.log(
           `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
@@ -110,7 +70,7 @@ const Cancelled = () => {
               </th>
             </tr>
 
-            {allCancelledOrder?.length > 0 ? allCancelledOrder?.map((data, index) => (
+            {allReturnedOrders?.length > 0 ? allReturnedOrders?.map((data, index) => (
                 <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100'>
                     <td className='h-[70px] px-4'>
                         <p className='text-sm font-semibold font-Mont text-dark-100 text-left'>{data?.id}</p> 

@@ -46,9 +46,9 @@ const Products = () => {
     <div className='p-8'>
         <div className='flex items-center justify-between'>
             <p className='text-[24px] text-[#23272E] font-bold'>Product Management</p>
-            <div className='bg-[#8CAD07] cursor-pointer flex items-center justify-between w-[169px] h-[38px] p-2 rounded' onClick={() => setOpenAddProduct(true)}>
+            {/* <div className='bg-[#8CAD07] cursor-pointer flex items-center justify-between w-[169px] h-[38px] p-2 rounded' onClick={() => setOpenAddProduct(true)}>
                 <p className='text-[#fff] font-Mont font-medium'>Add New Products</p>
-            </div>
+            </div> */}
         </div>
         <div className='mt-[33px] '>
             {
@@ -65,11 +65,11 @@ const Products = () => {
                     <div className='flex flex-col gap-[29px]'>
                         <div className='flex flex-col gap-1'>
                             <p className='font-Hat font-semibold text-[#23272E] text-[17px]'>Total Products</p>
-                            <p className='font-Hat text-[#8B909A] text-[13px]'>Last 7 days</p>
+                            {/* <p className='font-Hat text-[#8B909A] text-[13px]'>Last 7 days</p> */}
                         </div>
                         <div className='flex flex-col gap-1'>
                             <p className='text-[#23272E] font-Hat font-bold text-[31px]'>{allProducts?.length}</p>
-                            <p>Last 7 days</p>
+                            {/* <p>Last 7 days</p> */}
                         </div>
                     </div>
                     </div>

@@ -8,39 +8,21 @@ import Cancelled from './components/Cancelled';
 import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
 import { Skeleton } from '@mui/material';
+import EnrouteOrders from './components/EnrouteOrders';
 
 const Orders = () => {
   const [activeTab, setActiveTab] = useState("All")
   const [allOrders, setAllOrders] = useState([])
   const [allPendingOrders, setAllPendingOrders] = useState([])
+  const [allEnrouteOrders, setAllEnrouteOrders] = useState([])
   const [allCompletedOrders, setAllCompletedOrders] = useState([])
-  const [allCancelledOrders, setAllCancelledOrders] = useState([])
+  const [allReturnedOrders, setAllReturnedOrders] = useState([])
   const [loading, setLoading] = useState(false)
 
     const handleChangeTab = (tab) => {
         setActiveTab(tab)
     }
 
-  const data = [
-    {
-      "name": "Page A",
-      "uv": 4000,
-      "pv": 2400,
-      "amt": 2400
-    },
-    {
-      "name": "Page B",
-      "uv": 3000,
-      "pv": 1398,
-      "amt": 2210
-    },
-    {
-      "name": "Page C",
-      "uv": 2000,
-      "pv": 9800,
-      "amt": 2290
-    },
-  ]
 
   const getAllOrders = async () => {
     setLoading(true)
@@ -66,7 +48,7 @@ const Orders = () => {
     const pendingOrders = []
     for (let i = 0; i < allOrders?.length; i++) {
         console.log(allOrders[i])
-        if(allOrders[i]?.status === "Shipped") {
+        if(allOrders[i]?.status === "pending") {
           pendingOrders.push(allOrders[i])
         }
     }
@@ -81,11 +63,28 @@ const Orders = () => {
 
   console.log(allPendingOrders, "allPendingOrders");
 
+  const getEnrouteOrders = () => {
+    const enrouteOrders = []
+    for (let i = 0; i < allOrders?.length; i++) {
+        console.log(allOrders[i])
+        if(allOrders[i]?.status === "Enroute") {
+          enrouteOrders.push(allOrders[i])
+        }
+    }
+    return enrouteOrders
+  }
+
+
+  useEffect(() => {
+      const enrouteOrders = getEnrouteOrders();
+      setAllEnrouteOrders(enrouteOrders)
+  }, [allOrders])
+
   const getCompletedOrders = () => {
     const completedOrders = []
     for (let i = 0; i < allOrders?.length; i++) {
         console.log(allOrders[i])
-        if(allOrders[i]?.status === "Payment Completed") {
+        if(allOrders[i]?.status === "Delivered") {
           completedOrders.push(allOrders[i])
         }
     }
@@ -100,24 +99,24 @@ const Orders = () => {
 
   console.log(allCompletedOrders, "allCompletedOrders");
 
-  const getCancelledOrders = () => {
-    const cancelledOrders = []
+  const getReturnedOrders = () => {
+    const returnedOrders = []
     for (let i = 0; i < allOrders?.length; i++) {
         console.log(allOrders[i])
-        if(allOrders[i]?.status === "Cancelled") {
-          cancelledOrders.push(allOrders[i])
+        if(allOrders[i]?.status === "returned") {
+          returnedOrders.push(allOrders[i])
         }
     }
-    return cancelledOrders
+    return returnedOrders
   }
 
 
   useEffect(() => {
-      const cancelledOrders = getCancelledOrders();
-      setAllCancelledOrders(cancelledOrders)
+      const returnedOrders = getReturnedOrders();
+      setAllReturnedOrders(returnedOrders)
   }, [allOrders])
 
-  console.log(allCancelledOrders, "allCancelledOrders");
+  console.log(allReturnedOrders, "allReturnedOrders");
 
 
   return (
@@ -146,19 +145,7 @@ const Orders = () => {
                       <p>Last 7 days</p>
                   </div>
               </div>
-              {/* <ResponsiveContainer>
-                  <LineChart width={150} height={50} data={data}
-                      margin={{ top: 5, right: 10, left: 30, bottom: 5 }}
-                  >
-                      {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                      {/* <XAxis dataKey="name" /> */}
-                      {/* <YAxis /> */}
-                      {/* <Tooltip /> */}
-                      {/* <Legend /> 
-                      <Line type="monotone" dataKey="pv" stroke="#D02626" />
-
-                  </LineChart>
-              </ResponsiveContainer> */}
+          
             </div>
           </div>
         }
@@ -178,19 +165,7 @@ const Orders = () => {
                         <p>Last 7 days</p>
                     </div>
                 </div>
-                {/* <ResponsiveContainer>
-                    <LineChart width={150} height={50} data={data}
-                        margin={{ top: 5, right: 10, left: 30, bottom: 5 }}
-                    >
-                        {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                        {/* <XAxis dataKey="name" /> */}
-                        {/* <YAxis /> */}
-                        {/* <Tooltip /> */}
-                        {/* <Legend /> 
-                        <Line type="monotone" dataKey="pv" stroke="#D02626" />
-
-                    </LineChart>
-                </ResponsiveContainer> */}
+     
             </div>
           </div>
         }
@@ -210,19 +185,7 @@ const Orders = () => {
                         <p>Last 7 days</p>
                     </div>
                 </div>
-                {/* <ResponsiveContainer>
-                    <LineChart width={150} height={50} data={data}
-                        margin={{ top: 5, right: 10, left: 30, bottom: 5 }}
-                    >
-                        {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                        {/* <XAxis dataKey="name" /> */}
-                        {/* <YAxis /> */}
-                        {/* <Tooltip /> */}
-                        {/* <Legend /> 
-                        <Line type="monotone" dataKey="pv" stroke="#D02626" />
-
-                    </LineChart>
-                </ResponsiveContainer> */}
+        
             </div>
           </div>
         }
@@ -241,7 +204,19 @@ const Orders = () => {
           onClick={() => handleChangeTab("Pending")} 
           className={`${activeTab === "Pending" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[70px] h-[38px]`}
         >
-          Pending
+          Processing
+        </p>
+        <p 
+          onClick={() => handleChangeTab("Enroute")} 
+          className={`${activeTab === "Enroute" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[70px] h-[38px]`}
+        >
+          Enroute
+        </p>
+        <p 
+          onClick={() => handleChangeTab("Returned")} 
+          className={`${activeTab === "Returned" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[99px] h-[38px]`}
+        >
+          Returned
         </p>
         <p 
           onClick={() => handleChangeTab("Completed")} 
@@ -249,19 +224,15 @@ const Orders = () => {
         >
           Completed
         </p>
-        <p 
-          onClick={() => handleChangeTab("Cancelled")} 
-          className={`${activeTab === "Cancelled" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[99px] h-[38px]`}
-        >
-          Cancelled
-        </p>
+       
       </div>
       <hr />
 
       {activeTab === "All" && <AllOrders allOrders={allOrders} loading={loading}/>}
       {activeTab === "Pending" && <Pending allPendingOrders={allPendingOrders} loading={loading}/>}
+      {activeTab === "Enroute" && <EnrouteOrders allEnrouteOrders={allEnrouteOrders} loading={loading}/>}
       {activeTab === "Completed" && <Completed allCompletedOrders={allCompletedOrders} loading={loading} />}
-      {activeTab === "Cancelled" && <Cancelled allCancelledOrders={allCancelledOrders} loading={loading} />}
+      {activeTab === "Returned" && <Cancelled allReturnedOrders={allReturnedOrders} loading={loading} />}
 
     </div>
   )

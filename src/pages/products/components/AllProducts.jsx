@@ -79,13 +79,13 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
                             <p className='text-sm font-semibold font-Mont text-dark-100 text-left'>{`#${data?.id?.substring(0, 8)}`}</p> 
                         </td>
                         <td className='h-[70px] px-4'>
-                            <img src={data?.image_1} alt='Product_image' className='w-10 h-10 text-left' />
+                            <img src={data?.thumbnail} alt='Product_image' className='w-10 h-10 text-left' />
                         </td>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-Mont text-dark-100 text-left'>{data?.name || "N/A"}</p>
                         </td>
                         <td className='h-[70px] px-4'>
-                            <p className='text-sm font-Mont text-dark-100 text-left'>{data?.categoryName|| "N/A"}</p>
+                            <p className='text-sm font-Mont text-dark-100 text-left'>{data?.category?.name || "N/A"}</p>
                         </td>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-Mont text-dark-100 text-left'>{`₦${data?.unit_price}`}</p>

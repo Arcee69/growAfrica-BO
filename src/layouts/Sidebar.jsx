@@ -40,9 +40,9 @@ const Sidebar = () => {
                 <FaRegUser  className={`${location.pathname === "/customers" || location?.pathname === "/customers/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
                 <p className={`${location.pathname === "/customers" || location?.pathname === "/customers/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Customers</p>
             </div>
-            <div onClick={() => {navigate("/vendors"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/vendors" || location?.pathname === "/vendors/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
-                <FaRegUser  className={`${location.pathname === "/vendors" || location?.pathname === "/vendors/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
-                <p className={`${location.pathname === "/vendors" || location?.pathname === "/vendors/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Vendors</p>
+            <div onClick={() => {navigate("/mail"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/mail" || location?.pathname === "/mail/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
+                <FaRegUser  className={`${location.pathname === "/mail" || location?.pathname === "/mail/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
+                <p className={`${location.pathname === "/mail" || location?.pathname === "/mail/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Mailing</p>
             </div>
         </div>
     </div>

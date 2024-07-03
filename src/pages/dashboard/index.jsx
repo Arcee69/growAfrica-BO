@@ -25,13 +25,15 @@ const Dashboard = () => {
   const [allOrdersLoading, setAllOrdersLoading] = useState([])
 
 
+  const formatter = new Intl.NumberFormat('en-US');
+
   const fetchAnalytics = async () => {
     setLoadingAnalyticsData(true)
     await api.get(`${appUrls?.FETCH_ANALYTICS_URL}`)
     .then((res) => {
       console.log(res, "analytics")
       setLoadingAnalyticsData(false);
-      setAnalyticsData(res?.data?.data)
+      setAnalyticsData(res?.data)
     })
     .catch((err) => {
       setLoadingAnalyticsData(false)
@@ -62,12 +64,12 @@ const Dashboard = () => {
   }, [])
 
   const data = {
-    series: [analyticsData?.saloon_sales, analyticsData?.retailer_sales, ],
+    series: [analyticsData?.userCounts?.buyers, analyticsData?.userCounts?.sellers, ],
     options: {
         chart: {
           type: 'donut',
         },
-        labels: [ " Salon", " Retailer"],
+        labels: [ " Buyers", " Sellers"],
         colors:[  '#FFD240', "#50724D", ],
         dataLabels: {
           enabled: false,
@@ -259,7 +261,7 @@ const Dashboard = () => {
         <div className='flex justify-between items-center w-[350px] bg-[#fff] p-2 rounded-xl'>
           <div className='flex flex-col gap-2'>
             <p className='text-[15px] text-[#8A9099] font-Hat'>Total Income</p>
-            <p className='text-[#3F434A] font-Hat font-medium text-[30px] '>{`₦${analyticsData?.total_income || 0}`}</p>
+            <p className='text-[#3F434A] font-Hat font-medium text-[30px] '>{`₦${formatter.format(analyticsData?.totalTransactionValue) || 0}`}</p>
           </div>
           <img src={Dollar} alt='dollar' className='w-[66px] h-[66px]'/>
         </div>
@@ -273,7 +275,7 @@ const Dashboard = () => {
         <div className='flex justify-between items-center w-[350px] bg-[#fff] p-2 rounded-xl'>
           <div className='flex flex-col gap-2'>
             <p className='text-[15px] text-[#8A9099] font-Hat'>New Customers</p>
-            <p className='text-[#3F434A] font-Hat font-medium text-[30px] '>{analyticsData?.new_customers || 0}</p>
+            <p className='text-[#3F434A] font-Hat font-medium text-[30px] '>{(analyticsData?.userCounts?.sellers + analyticsData?.userCounts?.buyers) || 0}</p>
           </div>
           <img src={User} alt='user' className='w-[66px] h-[66px]'/>
         </div>
@@ -283,7 +285,7 @@ const Dashboard = () => {
 
         <div className='w-[540px] h-[402px] bg-[#fff] rounded-lg flex p-6 flex-col'>
           <div className='flex items-center justify-between'>
-            <p className='font-Hat text-[#3F434A] font-medium text-[20px]'>Sales</p>
+            <p className='font-Hat text-[#3F434A] font-medium text-[20px]'>Users</p>
             <div className='flex items-center border p-1.5 rounded-xl'>
               {/* <img src={Calendar} alt='calender'/> */}
               <input type='date' className='outline-none appearance-none' placeholder='01/01/1900'/>
@@ -295,7 +297,7 @@ const Dashboard = () => {
                 <Chart options={data?.options} series={data?.series} type="donut" width="400" /> 
                 <div className='absolute top-1/2 left-[38%] transform -translate-x-1/2 -translate-y-1/2 text-center'>
                   <div className='flex flex-col items-center justify-center'>
-                    <p className='font-medium font-Hat text-[#3F434A] text-[28px]'>{analyticsData?.total_sales}</p>
+                    <p className='font-medium font-Hat text-[#3F434A] text-[28px]'>{(analyticsData?.userCounts?.buyers + analyticsData?.userCounts?.sellers)}</p>
                     <p className='font-Hat text-[#8A9099] text-sm'>total</p>
                   </div>
                 </div>
@@ -327,7 +329,7 @@ const Dashboard = () => {
                   transactionData?.length > 0 ? transactionData.map((data, index) => (
                     <div key={index} className='flex items-center justify-between'>
                         <div className='flex flex-col'>
-                          <p className='font-Hat text-sm text-[#3F434A]'>{data?.user?.full_name}</p>
+                          <p className='font-Hat text-sm text-[#3F434A]'>{`${data?.user?.first_name} ${data?.user?.last_name}`}</p>
                           <p className='text-[11px] font-Hat text-[#8A9099]'>{`${new Date(data?.created_at).toLocaleTimeString()} - ${new Date(data?.created_at).toDateString().slice(4)}`}</p>
                         </div>
                         <div className='flex flex-col items-center'>
@@ -361,7 +363,7 @@ const Dashboard = () => {
             <p className='font-Hat text-[#3F434A] font-medium text-[20px]'>Last Orders</p>
             <div className='flex items-center border p-1.5 rounded-xl'>
               {/* <img src={Calendar} alt='calender'/> */}
-              <input type='date' className='outline-none appearance-none' placeholder='01/01/1900'/>
+              {/* <input type='date' className='outline-none appearance-none' placeholder='01/01/1900'/> */}
             </div>
           </div>
 
@@ -378,15 +380,15 @@ const Dashboard = () => {
                     Amount
                 </p>
                 <p className="font-Hat text-[#8A9099] w-[100px] text-[13px] text-left">
-                    Method {/* Payment Type */}
-                </p>
-                <p className="font-Hat text-[#8A9099] w-[90px] text-[13px] text-center">
-                    Assignee
+                    Transaction Id {/* Payment Type */}
                 </p>
                 <p className="font-Hat text-[#8A9099] text-[13px] text-left">
                     Order Items
                 </p>
-                <p className="font-Hat text-[#8A9099] text-[13px] ml-5 text-left">
+                <p className="font-Hat ml-10 text-[#8A9099] text-[13px] text-left">
+                    Address
+                </p>
+                <p className="font-Hat text-[#8A9099] text-[13px] ml-20 text-left">
                     Date
                 </p>
                 {/* <p className="font-Hat text-[#8A9099] text-[13px] text-left">
@@ -408,13 +410,13 @@ const Dashboard = () => {
                           <p className='text-sm font-Mont text-dark-100 text-left'>{`₦${data?.total_amount}`}</p>
                       </div>
                       <div className=' w-[150px]'>
-                          <p className='text-sm font-Mont text-dark-100 text-center'>{data?.delivery_method}</p>
+                          <p className='text-sm font-Mont text-dark-100 text-center'>{data?.txn_id}</p>
                       </div>
                       <div className='w-[100px]'>
-                          <p className='text-sm font-Mont text-dark-100 text-center'>{data?.assigned_to?.full_name || "N/A"}</p>
+                          <p className='text-sm font-Mont text-dark-100 text-center'>{data?.items_count?.length > 0 ? data?.items_count?.length : 0 }</p>
                       </div>
-                      <div className='w-[100px]'>
-                          <p className='text-sm font-Mont text-dark-100 text-center'>{data?.order_items?.length > 0 ? data?.order_items?.length : 0 }</p>
+                      <div className=' w-[150px]'>
+                          <p className='text-sm font-Mont text-dark-100 text-center'>{data?.address}</p>
                       </div>
                       <div className='w-[100px]'>
                         <p className='text-sm font-Mont text-dark-100 text-left'>{new Date(data?.created_at).toLocaleDateString()}</p> 

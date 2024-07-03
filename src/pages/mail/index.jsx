@@ -77,7 +77,7 @@ const Mailing = () => {
                       <select 
                         name='type'
                         value={values?.type} 
-                        className="rounded-lg border-[#CEB7D9] outline-none xs:w-full outline-none lg:w-[420px] mt-1.5 h-[51px] border-solid  p-3 border" 
+                        className="rounded-lg border-[#27AE60] outline-none xs:w-full outline-none lg:w-[420px] mt-1.5 h-[51px] border-solid  p-3 border" 
                         onChange={handleChange} 
                       >
                           <option defaultValue>Select User...</option>
@@ -99,7 +99,7 @@ const Mailing = () => {
                           type="text" 
                           value={values.subject}
                           onChange={handleChange}
-                          className="rounded-lg border-[#CEB7D9] xs:w-full outline-none lg:w-[420px] mt-1.5 h-[51px] border-solid  p-3 border"
+                          className="rounded-lg border-[#27AE60] xs:w-full outline-none lg:w-[420px] mt-1.5 h-[51px] border-solid  p-3 border"
                       />
                       {errors.subject && touched.subject ? (
                       <div className='text-RED-_100'>{errors.subject}</div>
@@ -114,7 +114,7 @@ const Mailing = () => {
                           type="text" 
                           value={values.message}
                           onChange={handleChange}
-                          className="rounded-lg border-[#CEB7D9] xs:w-full outline-none lg:w-[420px] mt-1.5 h-[100px] border-solid  p-3 border"
+                          className="rounded-lg border-[#27AE60] xs:w-full outline-none lg:w-[420px] mt-1.5 h-[100px] border-solid  p-3 border"
                       ></textarea>
                       {errors.message && touched.message ? (
                       <div className='text-RED-_100'>{errors.message}</div>

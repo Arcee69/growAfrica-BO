@@ -11,6 +11,9 @@ export const appUrls = {
    GET_CUSTOMER_URL: "/user/all",
    GET_CUSTOMER_URL_BY_ID: "/user",
 
+   //MAIL ENDPOINT
+   SEND_MAIL_URL: "/user/send-mail",
+
 
    //PRODUCTS ENDPOINT
    PRODUCTS_URL: "/product",

@@ -99,7 +99,7 @@ const Login = () => {
                                 type="text" 
                                 value={values.email}
                                 onChange={handleChange}
-                                className="rounded-lg border-[#D0D5DD] w-full outline-none  mt-1.5 h-[51px] border-solid  p-3 border"
+                                className="rounded-lg border-[#D0D5DD] w-full outline-none lg:w-[420px]  mt-1.5 h-[51px] border-solid  p-3 border"
                             />
                             {errors.email && touched.email ? (
                             <div className='text-RED-_100'>{errors.email}</div>

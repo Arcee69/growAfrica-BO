@@ -8,6 +8,8 @@ import { BsFillBarChartFill } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
 import { TbCategory } from "react-icons/tb";
+import { MdMail } from 'react-icons/md';
+import { FaMoneyBill } from 'react-icons/fa6';
 
 const Sidebar = () => {
 
@@ -36,12 +38,16 @@ const Sidebar = () => {
                 <BsFillBarChartFill  className={`${location.pathname === "/orders" || location?.pathname === "/orders/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
                 <p className={`${location.pathname === "/orders" || location?.pathname === "/orders/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Orders</p>
             </div>
-            <div onClick={() => {navigate("/customers"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/customers" || location?.pathname === "/customers/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
-                <FaRegUser  className={`${location.pathname === "/customers" || location?.pathname === "/customers/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
-                <p className={`${location.pathname === "/customers" || location?.pathname === "/customers/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Customers</p>
+            <div onClick={() => {navigate("/users"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/users" || location?.pathname === "/users/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
+                <FaRegUser  className={`${location.pathname === "/users" || location?.pathname === "/users/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
+                <p className={`${location.pathname === "/users" || location?.pathname === "/users/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Users</p>
+            </div>
+            <div onClick={() => {navigate("/transactions"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/transactions" || location?.pathname === "/transactions/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
+                <FaMoneyBill  className={`${location.pathname === "/transactions" || location?.pathname === "/transactions/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
+                <p className={`${location.pathname === "/transactions" || location?.pathname === "/transactions/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Transactions</p>
             </div>
             <div onClick={() => {navigate("/mail"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/mail" || location?.pathname === "/mail/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
-                <FaRegUser  className={`${location.pathname === "/mail" || location?.pathname === "/mail/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
+                <MdMail  className={`${location.pathname === "/mail" || location?.pathname === "/mail/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
                 <p className={`${location.pathname === "/mail" || location?.pathname === "/mail/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Mailing</p>
             </div>
         </div>

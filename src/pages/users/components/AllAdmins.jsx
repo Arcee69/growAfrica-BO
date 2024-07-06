@@ -7,129 +7,38 @@ import ReactPaginate from 'react-paginate';
 
 import Empty from "../../../assets/png/empty.png"
 import { Skeleton } from '@mui/material';
+import ModalPop from '../../../components/modalPop';
+import Approved from '../modals/Approved';
+import Suspend from '../modals/Suspend';
+import Delete from '../modals/Delete';
 
-const Retailers = ({ allRetailUsers, loading }) => {
+const AllAdmins = ({ allAdmins, loading, setUserActionLoading, userActionLoading }) => {
   const [text, setText] = useState("")
   const [tasks, setTasks] = useState([]);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10)
   const [itemOffset, setItemOffset] = useState(0);
+  const [openApprove, setOpenApprove] = useState(false);
+  const [openSuspend, setOpenSuspend] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [approveData, setApproveData] = useState([]);
+  const [suspendData, setSuspendData] = useState([]);
+  const [deleteData, setDeleteData] = useState([]);
 
   const navigate = useNavigate()
 
   const handleText = (e) => setText(e.target.value)
 
-  // const allCustomersData = [
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)'
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)'
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  //   {
-  //     id: "#0007366388",
-  //     businessName: "Beauty Emporium",
-  //     address: "123 Main Street",
-  //     phone: "(555) 555-1234",
-  //     email: "info@example.com",
-  //     type: "Salon",
-  //     capacity: 'N/A (Services)',
-  //     status: "Pending"
-  //   },
-  // ]
-
     //Get Current data
     const endOffset = itemOffset + perPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allRetailUsers?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allRetailUsers?.length / perPage);
+    const currentData = allAdmins?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(allAdmins?.length / perPage);
 
 
     //Change Page 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * perPage) % allRetailUsers?.length;
+        const newOffset = (event.selected * perPage) % allAdmins?.length;
         console.log(
           `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
@@ -138,7 +47,7 @@ const Retailers = ({ allRetailUsers, loading }) => {
 
   return (
     <div className='mt-6'>
-      <div className='flex items-center justify-between'>
+      {/* <div className='flex items-center justify-between'>
         <div className='w-[200px] h-[40px] bg-[#fff] flex items-center justify-between rounded p-2'>
           <input 
             name='search' 
@@ -153,60 +62,57 @@ const Retailers = ({ allRetailUsers, loading }) => {
           <p className='text-[#8B909A] font-Hat text-[15px]'>Filter by Capacity</p>
           <IoIosArrowDown className='w-4 h-4 text-[#8B909A]'/>
         </div>
-      </div>
+      </div> */}
 
       {
-        loading ?
+        loading || userActionLoading ?
         <Skeleton  variant="rectangular" width={1080} height={1000} style={{ backgroundColor: 'rgba(0,0,0, 0.06)', marginTop: "20px" }} />
         :
         <>
           <table className='w-full bg-[#fff] rounded-tr-xl rounded-tl-xl mt-4'>
             <tr className='h-[48px]'>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
-                Customer ID
+                Name
               </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
-                Business Name
-              </th>
-              <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
-                Address
+                Email
               </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Contact
               </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
-                Business Type
+                Role
               </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
-                Capacity
+                Status
               </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Action
               </th>
             </tr>
 
-            {allRetailUsers?.length > 0 ? allRetailUsers?.map((data, index) => (
-                <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))}>
+            {allAdmins?.length > 0 ? allAdmins?.map((data, index) => (
+                <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' > {/* onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))} */}
                     <td className='h-[70px] px-4'>
-                        <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`#${data?.id?.substring(0, 8)}`}</p> 
+                        <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`${data?.first_name} ${data?.last_name}`}</p> 
                     </td>
                     <td className='h-[70px] px-4'>
-                        <p className='text-sm font-Mont text-dark-100 text-center'>{data?.business_name || "N/A"}</p>
+                        <p className='text-sm font-Mont text-dark-100 text-center'>{data?.email}</p>
                     </td>
                     <td className='h-[70px] px-4'>
-                        <p className='text-sm font-Mont text-dark-100 text-center'>{data?.business_address || "N/A"}</p>
+                        <p className='text-sm font-Mont text-dark-100 text-center'>{data?.contact || "N/A"}</p>
                     </td>
                     <td className='h-[70px] px-4'>
                       <div className='text-center'>
-                          <p className='text-sm font-Mont text-dark-100'>{data?.phone_number || "N/A"}</p>
-                          <p className='text-[11px] font-Mont font-bold text-[#8D8D8D]'>{data?.email || "N/A"}</p>
+                          <p className='text-sm font-Mont text-dark-100 capitalize'>{data?.role}</p>
                       </div>
                     </td>
                     <td className='h-[70px] px-4'>
-                        <p className='text-sm font-Mont text-dark-100 text-center'>{data?.type}</p> 
-                    </td>
-                    <td className='h-[70px] px-4'>
-                        <p className='text-sm font-Mont text-dark-100 text-center'>{data?.capacity || "N/A"}</p>
+                      <div className={`rounded-lg h-8 flex mx-auto justify-center items-center ${!data.status && 'w-[99px]  bg-[#FFC60029]'} ${data.status  && ' w-[99px] bg-[#ECFDF5]'} `}>
+                          <p className={`text-sm font-Mont text-left font-semibold ${!data.status && 'text-[#FFC600]'} ${data.status && 'text-[#10B981]'} `}>
+                            {data.status  ? "Active" : "InActive"}
+                          </p>
+                      </div>
                     </td>
                     <td className='h-[70px] px-4 flex justify-center items-center'>
                         <Popover className="relative">
@@ -220,9 +126,14 @@ const Retailers = ({ allRetailUsers, loading }) => {
                             <Popover.Panel>
                                 <Popover.Button
                                     style={{boxShadow: '0px 13px 40px 0px rgba(0, 0, 0, 0.15)'}}
-                                    className="cursor-pointer py-4 px-6 w-[192px] rounded-lg z-10 absolute bg-white border border-grey-100 right-10"
+                                    className="cursor-pointer py-2 px-4 w-[192px] rounded-lg z-10 flex flex-col  absolute bg-white border border-grey-100 right-10"
                                 >
-                                    <p onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))} className='bg-white text-start text-[15px]'>View</p>
+                                  {
+                                    data?.status ?
+                                    <p onClick={() => {setOpenSuspend(true); setSuspendData(data)}} className='w-full p-2 bg-white hover:bg-[#ccc] hover:rounded-lg text-start text-[15px]'>Deactivate</p>
+                                    :
+                                    <p onClick={() => {setOpenApprove(true); setApproveData(data)}} className='w-full p-2 bg-white hover:bg-[#ccc] hover:rounded-lg text-start text-[15px]'>Activate</p>
+                                  }
                                 </Popover.Button>
                             </Popover.Panel>
                         </Popover>
@@ -256,8 +167,30 @@ const Retailers = ({ allRetailUsers, loading }) => {
         </>
       }
 
+      <ModalPop isOpen={openApprove}>
+        <Approved 
+          handleClose={() => setOpenApprove(false)} 
+          approveData={approveData} 
+          userActionLoading={userActionLoading} 
+          setUserActionLoading={setUserActionLoading} 
+        />
+      </ModalPop>
+
+      <ModalPop isOpen={openSuspend}>
+        <Suspend 
+          handleClose={() => setOpenSuspend(false)} 
+          suspendData={suspendData} 
+          userActionLoading={userActionLoading} 
+          setUserActionLoading={setUserActionLoading}
+        />
+      </ModalPop>
+
+      <ModalPop isOpen={openDelete}>
+        <Delete handleClose={() => setOpenDelete(false)} deleteData={deleteData} />
+      </ModalPop>
+
     </div>
   )
 }
 
-export default Retailers
+export default AllAdmins

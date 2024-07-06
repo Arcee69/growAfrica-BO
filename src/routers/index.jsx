@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Dashboard from '../pages/dashboard'
-import Customers from '../pages/customers'
+import Users from '../pages/users'
 import Orders from '../pages/orders'
 import Layouts from '../layouts'
-import CustomersDetails from '../pages/customers/info/Info'
+import UsersDetails from '../pages/users/info/Info'
 import OrderDetails from '../pages/orders/info/Info'
 import CompletedOrderDetails from '../pages/orders/completed'
 import { AuthProtectRoutes, ProtectRoutes } from './protectRoutes'
@@ -12,6 +12,7 @@ import Login from '../pages/auth/login'
 import Products from '../pages/products'
 import Category from '../pages/category'
 import Mailing from '../pages/mail'
+import Transactions from '../pages/Transactions'
 
 
 const Routers = () => {
@@ -46,11 +47,12 @@ const Routers = () => {
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/products' element={<Products />} />
                 <Route path='/category' element={<Category />} />
-                <Route path='/customers' element={<Customers />} />
-                <Route path='/customers/details' element={<CustomersDetails />} />
+                <Route path='/users' element={<Users />} />
+                <Route path='/users/details' element={<UsersDetails />} />
                 <Route path='/orders' element={<Orders />} />
                 <Route path='/orders/details' element={<OrderDetails />} />
                 <Route path='/orders/completed' element={<CompletedOrderDetails />} />
+                <Route path='/transactions' element={<Transactions />} />
                 <Route path='/mail' element={<Mailing />} />
             </Route>
 

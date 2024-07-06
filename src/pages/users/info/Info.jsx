@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Details from './Details';
 import History from './History';
 
-const CustomersDetails = () => {
+const UsersDetails = () => {
     const [activeTab, setActiveTab] = useState("Details")
 
     const navigate = useNavigate()
@@ -62,4 +62,4 @@ const CustomersDetails = () => {
   )
 }
 
-export default CustomersDetails
+export default UsersDetails

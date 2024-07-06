@@ -99,25 +99,25 @@ const Login = () => {
                                 type="text" 
                                 value={values.email}
                                 onChange={handleChange}
-                                className="rounded-lg border-[#D0D5DD] xs:w-full outline-none lg:w-[420px] mt-1.5 h-[51px] border-solid  p-3 border"
+                                className="rounded-lg border-[#D0D5DD] w-full outline-none  mt-1.5 h-[51px] border-solid  p-3 border"
                             />
                             {errors.email && touched.email ? (
                             <div className='text-RED-_100'>{errors.email}</div>
                             ) : null}
                         </div>
                         <div className="flex flex-col xs:w-full lg:w-[420px]">
-                        <label htmlFor='password' className="text-xs font-normal text-[#101828]">Password</label>
-                        <PasswordField 
-                            name="password"
-                            value={values.password}
-                            placeholder="Password"
-                            className="border lg:w-[420px] h-[51px] rounded-lg border-[#D0D5DD] mt-1.5"
-                            onChange={handleChange}
-                        />
-                        {/* <p className="text-primary text-left text-xs mt-1.5 font-medium cursor-pointer">Forgot Password?</p> */}
-                        {errors.password && touched.password ? (
-                            <div className='text-RED-_100'>{errors.password}</div>
-                            ) : null}
+                            <label htmlFor='password' className="text-xs font-normal text-[#101828]">Password</label>
+                            <PasswordField 
+                                name="password"
+                                value={values.password}
+                                placeholder="Password"
+                                className="border h-[51px] rounded-lg border-[#D0D5DD] mt-1.5"
+                                onChange={handleChange}
+                            />
+                            {/* <p className="text-primary text-left text-xs mt-1.5 font-medium cursor-pointer">Forgot Password?</p> */}
+                            {errors.password && touched.password ? (
+                                <div className='text-RED-_100'>{errors.password}</div>
+                                ) : null}
                         </div>
 
                         <button 

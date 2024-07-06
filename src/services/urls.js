@@ -14,6 +14,17 @@ export const appUrls = {
    //MAIL ENDPOINT
    SEND_MAIL_URL: "/user/send-mail",
 
+   //USERS ENDPOINT
+   GET_ADMIN_URL: "/user/admins/all",
+   GET_BUYERS_URL: "/user/buyers/all",
+   GET_SELLERS_URL: "/user/sellers/all",
+   DEACTIVATE_USER_URL: "/user/deactivate",
+   ACTIVATE_USER_URL: "/user/activate",
+   CREATE_ADMIN_URL: "/user/admin/create",
+
+   //TRANSACTIONS ENDPOINT
+   GET_TRANSACTIONS_URL: "/transactions",
+
 
    //PRODUCTS ENDPOINT
    PRODUCTS_URL: "/product",

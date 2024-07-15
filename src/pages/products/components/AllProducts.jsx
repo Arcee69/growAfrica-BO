@@ -10,12 +10,14 @@ import { api } from '../../../services/api'
 import { appUrls } from '../../../services/urls'
 
 import Empty from "../../../assets/png/empty.png"
+import ProductInfo from './ProductInfo'
 
 const AllProducts = ({ loading, allProducts, handleText }) => {  
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10)
     const [itemOffset, setItemOffset] = useState(0);
     const [openAddImages, setOpenAddImages] = useState(false);
+    const [openProductInfo, setOpenProductInfo] = useState(false);
     const [productData, setProductData] = useState([])
 
     //Get Current data
@@ -33,6 +35,8 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
         );
         setItemOffset(newOffset);
     };
+
+    console.log(allProducts, "allProducst")
 
   return (
     <div className='mt-6'>
@@ -65,6 +69,12 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
                     Product Name
                 </th>
                 <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
+                    Sellers Name
+                </th>
+                <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
+                    Inventory
+                </th>
+                <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
                     Product Category
                 </th>
                 <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
@@ -74,7 +84,7 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
 
               {allProducts?.length > 0 ? allProducts?.map((data, index) =>  {
                 return (
-                    <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => {setOpenAddImages(true); setProductData(data)}}>
+                    <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => {setOpenProductInfo(true), setProductData(data)}}>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-semibold font-Mont text-dark-100 text-left'>{`#${data?.id?.substring(0, 8)}`}</p> 
                         </td>
@@ -83,6 +93,12 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
                         </td>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-Mont text-dark-100 text-left'>{data?.name || "N/A"}</p>
+                        </td>
+                        <td className='h-[70px] px-4'>
+                            <p className='text-sm font-Mont text-dark-100 text-left'>{`${data?.seller?.first_name} ${data?.seller?.last_name}` || "N/A"}</p>
+                        </td>
+                        <td className='h-[70px] px-4'>
+                            <p className='text-sm font-Mont text-dark-100 text-left'>{data?.inventory || "N/A"}</p>
                         </td>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-Mont text-dark-100 text-left'>{data?.category?.name || "N/A"}</p>
@@ -120,9 +136,9 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
         </div>
        </>
     }
-        <ModalPop isOpen={openAddImages}>
-            <AddImages 
-                handleClose={() => setOpenAddImages(false)} 
+        <ModalPop isOpen={openProductInfo}>
+            <ProductInfo 
+                handleClose={() => setOpenProductInfo(false)} 
                 productData={productData}
             />
         </ModalPop>

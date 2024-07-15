@@ -130,7 +130,7 @@ const Users = () => {
     <div className='p-8'>
         <div className='flex items-center justify-between'>
             <p className='text-[24px] text-[#23272E] font-bold'>Users Management</p>
-            <div onClick={() => setOpenAddAdmin(true)} className='bg-[#8CAD07] flex items-center justify-between w-[159px] h-[48px] p-2 rounded'>
+            <div onClick={() => setOpenAddAdmin(true)} className='bg-[#27AE60] flex items-center justify-between w-[159px] h-[48px] p-2 rounded'>
                 <p className='text-[#fff] font-Mont font-medium'>Create Admin</p>
                 <FaPlus className='w-4 h-4 text-[#fff]' />
             </div>
@@ -207,19 +207,19 @@ const Users = () => {
         <div className='flex items-center gap-5 mt-[44px]'>
             <p 
                 onClick={() => handleChangeTab("Admins")} 
-                className={`${activeTab === "Admins" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[87px] h-[38px]`}
+                className={`${activeTab === "Admins" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[87px] h-[38px]`}
             >
                 Admins
             </p>
             <p 
                 onClick={() => handleChangeTab("Sellers")} 
-                className={`${activeTab === "Sellers" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[78px] h-[38px]`}
+                className={`${activeTab === "Sellers" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[78px] h-[38px]`}
             >
                 Sellers
             </p>
             <p 
                 onClick={() => handleChangeTab("Buyers")} 
-                className={`${activeTab === "Buyers" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[99px] h-[38px]`}
+                className={`${activeTab === "Buyers" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[99px] h-[38px]`}
             >
                 Buyers
             </p>

@@ -47,7 +47,7 @@ const Category = () => {
     <div className='p-8'>
         <div className='flex items-center justify-between'>
             <p className='text-[24px] text-[#23272E] font-bold'>Category Management</p>
-            <div className='bg-[#8CAD07] cursor-pointer flex items-center justify-center w-[189px] h-[38px] p-2 rounded' onClick={() => setOpenAddCategory(true)}>
+            <div className='bg-[#27AE60] cursor-pointer flex items-center justify-center w-[189px] h-[38px] p-2 rounded' onClick={() => setOpenAddCategory(true)}>
                 <p className='text-[#fff] font-Mont font-medium'>Add New Category</p>
             </div>
         </div>
@@ -80,7 +80,7 @@ const Category = () => {
         <div className='mt-[44px]'>
             <p 
                 // onClick={() => handleChangeTab("All")} 
-                className={`${activeTab === "All" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[57px] h-[38px]`}
+                className={`${activeTab === "All" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[57px] h-[38px]`}
             >
                 All
             </p>

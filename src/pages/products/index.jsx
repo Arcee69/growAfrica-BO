@@ -79,7 +79,7 @@ const Products = () => {
         <div className='mt-[44px]'>
             <p 
                 // onClick={() => handleChangeTab("All")} 
-                className={`${activeTab === "All" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[57px] h-[38px]`}
+                className={`${activeTab === "All" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer text-center p-1 border border-[#27AE60] w-[97px] h-[38px]`}
             >
                 All
             </p>

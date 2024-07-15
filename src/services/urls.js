@@ -22,10 +22,6 @@ export const appUrls = {
    ACTIVATE_USER_URL: "/user/activate",
    CREATE_ADMIN_URL: "/user/admin/create",
 
-   //TRANSACTIONS ENDPOINT
-   GET_TRANSACTIONS_URL: "/transactions",
-
-
    //PRODUCTS ENDPOINT
    PRODUCTS_URL: "/product",
    UPLOAD_IMAGE_URL_A: "product/upload-image-1",

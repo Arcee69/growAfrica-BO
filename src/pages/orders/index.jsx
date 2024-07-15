@@ -196,31 +196,31 @@ const Orders = () => {
       <div className='flex items-center gap-4 mt-[44px]'>
         <p 
           onClick={() => handleChangeTab("All")} 
-          className={`${activeTab === "All" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[57px] h-[38px]`}
+          className={`${activeTab === "All" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[57px] h-[38px]`}
         >
             All
         </p>
         <p 
           onClick={() => handleChangeTab("Pending")} 
-          className={`${activeTab === "Pending" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[70px] h-[38px]`}
+          className={`${activeTab === "Pending" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[90px] h-[38px]`}
         >
           Processing
         </p>
         <p 
           onClick={() => handleChangeTab("Enroute")} 
-          className={`${activeTab === "Enroute" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[70px] h-[38px]`}
+          className={`${activeTab === "Enroute" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[70px] h-[38px]`}
         >
           Enroute
         </p>
         <p 
           onClick={() => handleChangeTab("Returned")} 
-          className={`${activeTab === "Returned" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[99px] h-[38px]`}
+          className={`${activeTab === "Returned" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[99px] h-[38px]`}
         >
           Returned
         </p>
         <p 
           onClick={() => handleChangeTab("Completed")} 
-          className={`${activeTab === "Completed" ? "text-[#8CAD07] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer border-x-0 border-t-0 border border-[#8CAD07] w-[78px] h-[38px]`}
+          className={`${activeTab === "Completed" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[98px] h-[38px]`}
         >
           Completed
         </p>

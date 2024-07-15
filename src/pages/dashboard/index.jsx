@@ -70,7 +70,7 @@ const Dashboard = () => {
           type: 'donut',
         },
         labels: [ " Buyers", " Sellers"],
-        colors:[  '#FFD240', "#50724D", ],
+        colors:[  '#FFD240', "#27AE60", ],
         dataLabels: {
           enabled: false,
         },

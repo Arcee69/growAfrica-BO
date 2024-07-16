@@ -83,7 +83,7 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
                 Store 
               </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
-                Role
+                KYC
               </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Status

@@ -71,9 +71,9 @@ const Buyers = ({ allBuyers, loading }) => {
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Contact
               </th>
-              <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
+              {/* <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Role
-              </th>
+              </th> */}
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Status
               </th>
@@ -93,11 +93,11 @@ const Buyers = ({ allBuyers, loading }) => {
                 <td className='h-[70px] px-4'>
                     <p className='text-sm font-Mont text-dark-100 text-center'>{data?.phone || "N/A"}</p>
                 </td>
-                <td className='h-[70px] px-4'>
+                {/* <td className='h-[70px] px-4'>
                   <div className='text-center'>
                       <p className='text-sm font-Mont text-dark-100 capitalize'>{data?.role}</p>
                   </div>
-                </td>
+                </td> */}
                 <td className='h-[70px] px-4'>
                   <div className={`rounded-lg h-8 flex mx-auto justify-center items-center ${!data.status && 'w-[99px]  bg-[#FFC60029]'} ${data.status  && ' w-[99px] bg-[#ECFDF5]'} `}>
                       <p className={`text-sm font-Mont text-left font-semibold ${!data.status && 'text-[#FFC600]'} ${data.status && 'text-[#10B981]'} `}>

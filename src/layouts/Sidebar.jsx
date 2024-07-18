@@ -42,6 +42,10 @@ const Sidebar = () => {
                 <FaRegUser  className={`${location.pathname === "/users" || location?.pathname === "/users/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
                 <p className={`${location.pathname === "/users" || location?.pathname === "/users/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Users</p>
             </div>
+            <div onClick={() => {navigate("/kyc"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/kyc" || location?.pathname === "/kyc/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
+                <FaRegUser  className={`${location.pathname === "/kyc" || location?.pathname === "/kyc/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
+                <p className={`${location.pathname === "/kyc" || location?.pathname === "/kyc/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>KYC</p>
+            </div>
             <div onClick={() => {navigate("/transactions"), window.scrollTo(0, 0)}} className={`${location?.pathname === "/transactions" || location?.pathname === "/transactions/details"  ? "bg-[#fff]" : ""} w-[184px] h-[48px]  gap-2 flex items-center group cursor-pointer transition-all duration-300 p-[16px] hover:bg-[#fff]`}>
                 <FaMoneyBill  className={`${location.pathname === "/transactions" || location?.pathname === "/transactions/details"  ? "text-[#50724D]" : "text-[#fff]"} w-5 h-5  group-hover:text-[#50724D] `}/>
                 <p className={`${location.pathname === "/transactions" || location?.pathname === "/transactions/details"   ? "text-[#50724D]" : "text-[#fff]"}  group-hover:text-[#50724D] font-mont text-semibold `}>Transactions</p>

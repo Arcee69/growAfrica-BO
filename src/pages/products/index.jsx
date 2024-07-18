@@ -46,9 +46,6 @@ const Products = () => {
     <div className='p-8'>
         <div className='flex items-center justify-between'>
             <p className='text-[24px] text-[#23272E] font-bold'>Product Management</p>
-            {/* <div className='bg-[#8CAD07] cursor-pointer flex items-center justify-between w-[169px] h-[38px] p-2 rounded' onClick={() => setOpenAddProduct(true)}>
-                <p className='text-[#fff] font-Mont font-medium'>Add New Products</p>
-            </div> */}
         </div>
         <div className='mt-[33px] '>
             {

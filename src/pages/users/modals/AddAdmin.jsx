@@ -180,7 +180,7 @@ const AddAdmin = ({ handleClose, addAdminLoading, setAddAdminLoading}) => {
                        
                         <div className='mt-[26px] flex items-center gap-3'>
                             <button
-                                className="w-[228px] font-inter flex items-center justify-center h-[46px] bg-[#50724D] text-lg rounded text-center"
+                                className="w-[228px] font-inter flex items-center justify-center h-[46px] bg-[#27AE60] text-lg rounded text-center"
                                 type="submit"
                                 // disabled={addCategoryLoading}
                             >

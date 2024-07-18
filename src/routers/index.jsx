@@ -13,6 +13,7 @@ import Products from '../pages/products'
 import Category from '../pages/category'
 import Mailing from '../pages/mail'
 import Transactions from '../pages/Transactions'
+import KYC from '../pages/kyc'
 
 
 const Routers = () => {
@@ -54,6 +55,7 @@ const Routers = () => {
                 <Route path='/orders/completed' element={<CompletedOrderDetails />} />
                 <Route path='/transactions' element={<Transactions />} />
                 <Route path='/mail' element={<Mailing />} />
+                <Route path='/kyc' element={<KYC />} />
             </Route>
 
             <Route element={<AuthProtectRoutes />}>

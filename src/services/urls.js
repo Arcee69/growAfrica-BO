@@ -11,6 +11,10 @@ export const appUrls = {
    GET_CUSTOMER_URL: "/user/all",
    GET_CUSTOMER_URL_BY_ID: "/user",
 
+   //KYC ENDPOINT
+   GET_ALL_KYC_URL: "/user/sellers/kyc/applied",
+   UPDATE_KYC_STATUS_URL: "/user/update/kyc-application-status",
+
    //MAIL ENDPOINT
    SEND_MAIL_URL: "/user/send-mail",
 

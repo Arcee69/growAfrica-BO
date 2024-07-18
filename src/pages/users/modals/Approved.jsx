@@ -56,7 +56,7 @@ const Approved = ({ handleClose, approveData, userActionLoading, setUserActionLo
                 </button>
                 <button
                     type='button'
-                    className='w-[180px] h-[48px] bg-[#50724D] text-center flex items-center justify-center rounded'
+                    className='w-[180px] h-[48px] bg-[#27AE60] text-center flex items-center justify-center rounded'
                     onClick={() => activateUser()}
                 >
                     <p className='text-[#fff] font-Dm font-medium text-base' >{userActionLoading ? <CgSpinner className='animate-spin text-lg'/> : " Yes, Activate"}</p>

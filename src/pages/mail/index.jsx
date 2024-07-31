@@ -81,8 +81,8 @@ const Mailing = () => {
                         onChange={handleChange} 
                       >
                           <option defaultValue>Select User...</option>
-                          <option value="buyers" >Buyers</option>
-                          <option value="sellers">Sellers</option>
+                          <option value="buyer" >Buyers</option>
+                          <option value="seller">Sellers</option>
                       </select>
                      
                       {errors.type && touched.type ? (

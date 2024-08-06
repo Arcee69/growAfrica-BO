@@ -31,7 +31,7 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
     //Get Current data
     const endOffset = itemOffset + perPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allSellers.slice(itemOffset, endOffset);
+    const currentData = allSellers?.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(allSellers?.length / perPage);
 
 
@@ -93,7 +93,7 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
               </th>
             </tr>
 
-            {allSellers?.length > 0 ? allSellers?.map((data, index) => (
+            {currentData?.length > 0 ? currentData?.map((data, index) => (
               <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' > {/* onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))} */}
                 <td className='h-[70px] px-4'>
                     <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`${data?.first_name} ${data?.last_name}`}</p> 
@@ -112,9 +112,14 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
                   </div>
                 </td>
                 <td className='h-[70px] px-4'>
-                  <div className='text-center'>
-                      <p className='text-sm font-Mont text-dark-100 capitalize'>{data?.role}</p>
+                  <div className={`rounded-lg h-8 flex mx-auto justify-center items-center ${data.kyc_status === "pending" && 'w-[99px]  bg-[#FFC60029]'} ${data.kyc_status === "approved"  && ' w-[99px] bg-[#ECFDF5]'} `}>
+                      <p className={`text-sm font-Mont text-left font-semibold ${data.kyc_status === "pending" && 'text-[#FFC600]'} ${data.kyc_status === "approved" && 'text-[#10B981]'} `}>
+                        {data.kyc_status === "approved"  ? "Approved" : "Pending"}
+                      </p>
                   </div>
+                  {/* <div className='text-center'>
+                      <p className='text-sm font-Mont text-dark-100 capitalize'>{data?.role}</p>
+                  </div> */}
                 </td>
                 <td className='h-[70px] px-4'>
                   <div className={`rounded-lg h-8 flex mx-auto justify-center items-center ${!data.status && 'w-[99px]  bg-[#FFC60029]'} ${data.status  && ' w-[99px] bg-[#ECFDF5]'} `}>

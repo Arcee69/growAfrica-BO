@@ -84,6 +84,8 @@ const Users = () => {
         getAllSellers()
     }, [userActionLoading])
 
+    const approvedSellers = allSellers?.filter(item => item.kyc_status === 'approved');
+
 
     const settings = {
         dots: true,
@@ -174,6 +176,26 @@ const Users = () => {
                                 </div>
                                 <div className='flex flex-col gap-1'>
                                     <p className='text-[#23272E] font-Hat font-bold text-[31px]'>{allSellers?.length}</p>
+                                    {/* <p>Last 7 days</p> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                {
+                    loading ?
+                    <Skeleton  variant="rectangular" width={354} height={197} style={{ backgroundColor: 'rgba(0,0,0, 0.06)', borderRadius: "8px"}} />
+                    :
+                    <div>
+                        <div className='w-[354px] h-[197px] rounded-lg p-4 flex items-center bg-[#fff]'>
+                            <div className='flex flex-col gap-[29px]'>
+                                <div className='flex flex-col gap-1'>
+                                    <p className='font-Hat font-semibold text-[#23272E] text-[17px]'>Approved Sellers</p>
+                                    {/* <p className='font-Hat text-[#8B909A] text-[13px]'>Last 7 days</p> */}
+                                </div>
+                                <div className='flex flex-col gap-1'>
+                                    <p className='text-[#23272E] font-Hat font-bold text-[31px]'>{approvedSellers?.length}</p>
                                     {/* <p>Last 7 days</p> */}
                                 </div>
                             </div>

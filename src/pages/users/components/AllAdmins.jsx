@@ -91,7 +91,7 @@ const AllAdmins = ({ allAdmins, loading, setUserActionLoading, userActionLoading
               </th>
             </tr>
 
-            {allAdmins?.length > 0 ? allAdmins?.map((data, index) => (
+            {currentData?.length > 0 ? currentData?.map((data, index) => (
                 <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' > {/* onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))} */}
                     <td className='h-[70px] px-4'>
                         <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`${data?.first_name} ${data?.last_name}`}</p> 

@@ -6,10 +6,11 @@ import AllKycs from './component/AllKycs'
 
 const KYC = () => {
     const [loading, setLoading] = useState(false)
-    const [allKyc, setAllKyc] = useState(false)
+    const [allKyc, setAllKyc] = useState([])
+    const [allPendingKyc, setAllPendingKyc] = useState([])
     const [activeTab, setActiveTab] = useState("All");
     const [userActionLoading, setUserActionLoading] = useState(false)
-    const [addAdminLoading, setAddAdminLoading] = useState(false)
+   
 
     const handleChangeTab = (tab) => {
         setActiveTab(tab)
@@ -29,8 +30,23 @@ const KYC = () => {
         })
     }
 
+    const getAllPendingKyc = async () => {
+        setLoading(true)
+        await api.get(appUrls?.GET_ALL_PENDING_KYC_URL)
+        .then((res) => {
+            setLoading(false);
+            console.log(res, "bia")
+            setAllPendingKyc(res?.data?.data?.users)
+        })
+        .catch((err) => {
+            setLoading(false);
+            console.log(err, "Calcio")
+        })
+    }
+
     useEffect(() => {
         getAllKyc()
+        getAllPendingKyc()
     }, [userActionLoading])
 
 
@@ -61,7 +77,7 @@ const KYC = () => {
             </div>
           </div>
         }
-        {/* {
+        {
           loading ?
           <Skeleton  variant="rectangular" width={354} height={197} style={{ backgroundColor: 'rgba(0,0,0, 0.06)', borderRadius: "8px"}} />
           :
@@ -70,17 +86,19 @@ const KYC = () => {
                 <div className='flex flex-col gap-[29px]'>
                     <div className='flex flex-col gap-1'>
                         <p className='font-Hat font-semibold text-[#23272E] text-[17px]'>Pending Kyc</p>
-                        {/* <p className='font-Hat text-[#8B909A] text-[13px]'>Last 7 days</p>
+                        {/* <p className='font-Hat text-[#8B909A] text-[13px]'>Last 7 days</p> */}
                     </div>
+                 
                     <div className='flex flex-col gap-1'>
-                        <p className='text-[#23272E] font-Hat font-bold text-[31px]'>{0}</p>
-                        {/* <p>Last 7 days</p> 
+                        <p className='text-[#23272E] font-Hat font-bold text-[31px]'>{allPendingKyc?.length}</p>
+                         {/*<p>Last 7 days</p>  */}
                     </div>
+                 
                 </div>
      
             </div>
           </div>
-        } */}
+        }
        
 
 

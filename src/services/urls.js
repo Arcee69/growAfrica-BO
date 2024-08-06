@@ -5,7 +5,7 @@ export const appUrls = {
    //ORDERS ENDPOINT
    GET_ORDER_URL: "/orders",
    UPDATE_ORDER_URL: "/orders/update",
-   REFUND_ORDER_URL: "purchase/update/item",
+   REFUND_ORDER_URL: "/purchase/update/item",
 
    //CUSTOMER ENDPOINT
    GET_CUSTOMER_URL: "/user/all",
@@ -13,6 +13,7 @@ export const appUrls = {
 
    //KYC ENDPOINT
    GET_ALL_KYC_URL: "/user/sellers/kyc/applied",
+   GET_ALL_PENDING_KYC_URL: "/user/sellers/kyc/pending",
    UPDATE_KYC_STATUS_URL: "/user/update/kyc-application-status",
 
    //MAIL ENDPOINT

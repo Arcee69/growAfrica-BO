@@ -109,7 +109,7 @@ const AllKycs = ({ allKyc, loading, setUserActionLoading, userActionLoading }) =
                     <td className='h-[70px] px-4'>
                       <div className={`rounded-lg h-8 flex mx-auto justify-center items-center ${data.kyc_status === "applied" && 'w-[99px]  bg-[#FFC60029]'} ${data.kyc_status === "approved"  && ' w-[99px] bg-[#ECFDF5]'} `}>
                           <p className={`text-sm font-Mont text-left font-semibold ${data.kyc_status === "applied" && 'text-[#FFC600]'} ${data.kyc_status === "approved" && 'text-[#10B981]'} `}>
-                            {data.kyc_status === "applied"  ? "Pending" : "Approved"}
+                            {data.kyc_status === "applied"  ? "Applied" : "Approved"}
                           </p>
                       </div>
                     </td>

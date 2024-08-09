@@ -14,6 +14,8 @@ export const appUrls = {
    //KYC ENDPOINT
    GET_ALL_KYC_URL: "/user/sellers/kyc/applied",
    GET_ALL_PENDING_KYC_URL: "/user/sellers/kyc/pending",
+   GET_ALL_REJECTED_KYC_URL: "/user/sellers/kyc/rejected",
+   GET_ALL_APPROVED_KYC_URL: "/user/sellers/kyc/approved",
    UPDATE_KYC_STATUS_URL: "/user/update/kyc-application-status",
 
    //MAIL ENDPOINT

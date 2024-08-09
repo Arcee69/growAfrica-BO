@@ -85,9 +85,9 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 KYC
               </th>
-              <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
+              {/* <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Status
-              </th>
+              </th> */}
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Action
               </th>
@@ -121,13 +121,13 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
                       <p className='text-sm font-Mont text-dark-100 capitalize'>{data?.role}</p>
                   </div> */}
                 </td>
-                <td className='h-[70px] px-4'>
+                {/* <td className='h-[70px] px-4'>
                   <div className={`rounded-lg h-8 flex mx-auto justify-center items-center ${!data.status && 'w-[99px]  bg-[#FFC60029]'} ${data.status  && ' w-[99px] bg-[#ECFDF5]'} `}>
                       <p className={`text-sm font-Mont text-left font-semibold ${!data.status && 'text-[#FFC600]'} ${data.status && 'text-[#10B981]'} `}>
                         {data.status  ? "Active" : "InActive"}
                       </p>
                   </div>
-                </td>
+                </td> */}
                 <td className='h-[70px] px-4 flex justify-center items-center'>
                     <Popover className="relative">
                         <Popover.Button className="outline-none">

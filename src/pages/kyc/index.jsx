@@ -228,7 +228,7 @@ const KYC = () => {
                 onClick={() => handleChangeTab("All")} 
                 className={`${activeTab === "All" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[87px] h-[38px]`}
             >
-                All
+                Applied
             </p>
     
         </div>

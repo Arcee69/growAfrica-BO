@@ -4,6 +4,9 @@ import { appUrls } from '../../services/urls'
 import { api } from '../../services/api'
 import AllKycs from './component/AllKycs'
 import Slider from 'react-slick'
+import ApprovedKycs from './component/ApprovedKycs'
+import AllRejectedKycs from './component/AllRejectedKycs'
+import AllPendingKycs from './component/AllPendingKycs'
 
 const KYC = () => {
     const [loading, setLoading] = useState(false)
@@ -230,11 +233,32 @@ const KYC = () => {
             >
                 Applied
             </p>
+            <p 
+                onClick={() => handleChangeTab("Approved")} 
+                className={`${activeTab === "Approved" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[87px] h-[38px]`}
+            >
+                Approved
+            </p>
+            <p 
+                onClick={() => handleChangeTab("Pending")} 
+                className={`${activeTab === "Pending" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[87px] h-[38px]`}
+            >
+                Pending
+            </p>
+            <p 
+                onClick={() => handleChangeTab("Rejected")} 
+                className={`${activeTab === "Rejected" ? "text-[#27AE60] border-b border-2" :  "text-[#8B909A] border-0"} text-center cursor-pointer p-1 border border-[#27AE60] w-[87px] h-[38px]`}
+            >
+                Rejected
+            </p>
     
         </div>
         <hr />
         {activeTab === "All" && <AllKycs allKyc={allKyc} loading={loading} userActionLoading={userActionLoading} setUserActionLoading={setUserActionLoading} />}
-    </div>
+        {activeTab === "Approved" && <ApprovedKycs allApprovedKyc={allApprovedKyc} loading={loading} userActionLoading={userActionLoading} setUserActionLoading={setUserActionLoading} />}
+        {activeTab === "Pending" && <AllPendingKycs allPendingKyc={allPendingKyc} loading={loading} userActionLoading={userActionLoading} setUserActionLoading={setUserActionLoading} />}
+        {activeTab === "Rejected" && <AllRejectedKycs allRejectedKyc={allRejectedKyc} loading={loading} userActionLoading={userActionLoading} setUserActionLoading={setUserActionLoading} />}
+        </div>
   )
 }
 

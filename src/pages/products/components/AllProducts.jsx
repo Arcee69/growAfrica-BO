@@ -23,13 +23,13 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
     //Get Current data
     const endOffset = itemOffset + perPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allProducts.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allProducts.length / perPage);
+    const currentData = allProducts?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(allProducts?.length / perPage);
    
    
     //Change Page 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * perPage) % allProducts.length;
+        const newOffset = (event.selected * perPage) % allProducts?.length;
         console.log(
             `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
@@ -82,7 +82,7 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
                 </th>
               </tr>
 
-              {allProducts?.length > 0 ? allProducts?.map((data, index) =>  {
+              {currentData?.length > 0 ? currentData?.map((data, index) =>  {
                 return (
                     <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => {setOpenProductInfo(true), setProductData(data)}}>
                         <td className='h-[70px] px-4'>
@@ -127,7 +127,7 @@ const AllProducts = ({ loading, allProducts, handleText }) => {
                 breakLabel="..."
                 nextLabel=">"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={10}
                 className='w-full flex gap-3 font-Mont text-dark-100 font-semibold justify-end py-2 pr-10'
                 pageCount={pageCount}
                 previousLabel="<"

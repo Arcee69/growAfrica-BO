@@ -23,7 +23,7 @@ const Category = () => {
 
     const getAllCategory = async () => {
         setLoading(true)
-        await api.get(`${appUrls?.GET_PRODUCTS_CATEGORY_URL}${search}`)
+        await api.get(`${appUrls?.GET_PRODUCTS_CATEGORY_URL}`)
         .then((res) => {
           console.log(res, "asap")
           setLoading(false)
@@ -40,6 +40,10 @@ const Category = () => {
       useEffect(() => {
         getAllCategory()
       }, [searchTerm, addCategoryLoading, deleteLoading])
+
+      const filteredProducts = allCategory?.filter((item) => 
+        item?.name.toLowerCase().includes(searchTerm.toLowerCase()) || ""
+      )
 
       const handleText = (e) => setSearchTerm(e.target.value)
 
@@ -86,7 +90,7 @@ const Category = () => {
             </p>
         </div>
         <hr />
-        {activeTab === "All" && <AllCategories allCategory={allCategory} loading={loading} deleteLoading={deleteLoading} setDeleteLoading={setDeleteLoading} handleText={(e) => handleText(e)} />}
+        {activeTab === "All" && <AllCategories allCategory={filteredProducts} loading={loading} deleteLoading={deleteLoading} setDeleteLoading={setDeleteLoading} handleText={(e) => handleText(e)} />}
         <ModalPop isOpen={openAddCategory}>
             <AddCategory 
                 handleClose={() => setOpenAddCategory(false)} 

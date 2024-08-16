@@ -100,50 +100,6 @@ const Dashboard = () => {
       },
     };
 
-    const chartdata = [
-      {
-        "name": "Mon",
-        "uv": 4000,
-        "pv": 2400,
-        "amt": 2400
-      },
-      {
-        "name": "Tue",
-        "uv": 3000,
-        "pv": 1398,
-        "amt": 2210
-      },
-      {
-        "name": "Wed",
-        "uv": 2000,
-        "pv": 9800,
-        "amt": 2290
-      },
-      {
-        "name": "Thur",
-        "uv": 2780,
-        "pv": 3908,
-        "amt": 2000
-      },
-      {
-        "name": "Fri",
-        "uv": 1890,
-        "pv": 4800,
-        "amt": 2181
-      },
-      {
-        "name": "Sat",
-        "uv": 2390,
-        "pv": 3800,
-        "amt": 2500
-      },
-      {
-        "name": "Sun",
-        "uv": 3490,
-        "pv": 4300,
-        "amt": 2100
-      }
-    ];
 
 
     const ordersData = [
@@ -181,44 +137,7 @@ const Dashboard = () => {
       },
     ];
 
-    // const transactionData = [
-    //   {
-    //     id: 1,
-    //     name: "Devon Williamson",
-    //     date: "08:00 AM  —  19 August",
-    //     amount: "+$1.400",
-    //     type: "Payment"
-    //   },
-    //   {
-    //     id: 2,
-    //     name: "Debra Wilson",
-    //     date: "08:00 AM  —  19 August",
-    //     amount: "-$850",
-    //     type: "Refund"
-    //   },
-    //   {
-    //     id: 3,
-    //     name: "Judith Black",
-    //     date: "08:00 AM  —  19 August",
-    //     amount: "+$1.400",
-    //     type: "Payment"
-    //   },
-    //   {
-    //     id: 4,
-    //     name: "Philip Henry",
-    //     date: "08:00 AM  —  19 August",
-    //     amount: "+$1.400",
-    //     type: "Payment"
-    //   },
-    //   {
-    //     id: 5,
-    //     name: "Mitchell Cooper",
-    //     date: "08:00 AM  —  19 August",
-    //     amount: "+$1.400",
-    //     type: "Payment"
-    //   },
-    // ]
-
+  
     const getAllOrders = async () => {
       setAllOrdersLoading(true)
       await api.get(appUrls?.GET_ORDER_URL)
@@ -244,7 +163,7 @@ const Dashboard = () => {
     <div className='p-8'>
       <div className='flex items-center justify-between'>
         <p className='font-Hat font-medium text-[28px] text-[#3F434A]'>Overview</p>
-        <div className='flex items-center gap-4'>
+        <div className='flex items-center invisible gap-4'>
             <div className='w-[40px] h-[40px] bg-[#fff] flex items-center justify-center rounded-lg p-2'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8989 7.75503C11.1994 7.48146 11.6647 7.50325 11.9383 7.8037C12.2118 8.10415 12.1901 8.56948 11.8896 8.84306L7.99852 12.3861L4.10744 8.84306C3.80699 8.56948 3.7852 8.10415 4.05877 7.8037C4.33235 7.50325 4.79768 7.48146 5.09813 7.75503L7.26278 9.72604V0.735742C7.26278 0.329402 7.59218 0 7.99852 0C8.40486 0 8.73426 0.329402 8.73426 0.735742V9.72604L10.8989 7.75503ZM1.45455 12.3633C1.45455 11.9617 1.12893 11.6361 0.727273 11.6361C0.325611 11.6361 0 11.9617 0 12.3633V13.333C0 14.8058 1.19391 15.9997 2.66667 15.9997H13.3333C14.8061 15.9997 16 14.8058 16 13.333V12.3633C16 11.9617 15.6744 11.6361 15.2727 11.6361C14.8711 11.6361 14.5455 11.9617 14.5455 12.3633V13.333C14.5455 14.0025 14.0028 14.5451 13.3333 14.5451H2.66667C1.99723 14.5451 1.45455 14.0025 1.45455 13.333V12.3633Z" fill="#3F434A"/>
@@ -286,7 +205,7 @@ const Dashboard = () => {
         <div className='w-[540px] h-[402px] bg-[#fff] rounded-lg flex p-6 flex-col'>
           <div className='flex items-center justify-between'>
             <p className='font-Hat text-[#3F434A] font-medium text-[20px]'>Users</p>
-            <div className='flex items-center border p-1.5 rounded-xl'>
+            <div className='flex items-center hidden border p-1.5 rounded-xl'>
               {/* <img src={Calendar} alt='calender'/> */}
               <input type='date' className='outline-none appearance-none' placeholder='01/01/1900'/>
             </div>
@@ -333,7 +252,7 @@ const Dashboard = () => {
                           <p className='text-[11px] font-Hat text-[#8A9099]'>{`${new Date(data?.created_at).toLocaleTimeString()} - ${new Date(data?.created_at).toDateString().slice(4)}`}</p>
                         </div>
                         <div className='flex flex-col items-center'>
-                          <p className={`${data?.status === "Success" ? "text-[#49C96D]" : "text-[#FD7972]"} font-Hat`}>{`${data?.status === "Success" ? `+₦${data?.total_amount}` : `-₦${data?.total_amount}`}` }</p>
+                          <p className={`${data?.status === "Success" ? "text-[#49C96D]" : "text-[#FD7972]"} font-Hat`}>{`${data?.status === "Success" ? `+₦${formatter.format(data?.total_amount)}` : `-₦${formatter.format(data?.total_amount)}`}` }</p>
                           <p className='text-[11px] font-Hat text-[#8A9099]'>{data?.status}</p>
                         </div>
                     </div>

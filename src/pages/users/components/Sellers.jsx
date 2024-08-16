@@ -73,9 +73,9 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Name
               </th>
-              <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
+              {/* <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Email
-              </th>
+              </th> */}
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Contact
               </th>
@@ -85,9 +85,12 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 KYC
               </th>
-              {/* <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
-                Status
-              </th> */}
+              <th className="font-medium font-mont text-[#8B909A] px-4 whitespace-nowrap text-[13px] uppercase text-center">
+                Bank Name
+              </th>
+              <th className="font-medium font-mont text-[#8B909A] whitespace-nowrap px-4 text-[13px] uppercase text-center">
+                Bank Account
+              </th>
               <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-center">
                 Action
               </th>
@@ -98,9 +101,9 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
                 <td className='h-[70px] px-4'>
                     <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`${data?.first_name} ${data?.last_name}`}</p> 
                 </td>
-                <td className='h-[70px] px-4'>
+                {/* <td className='h-[70px] px-4'>
                     <p className='text-sm font-Mont text-dark-100 text-center'>{data?.email}</p>
-                </td>
+                </td> */}
                 <td className='h-[70px] px-4'>
                     <p className='text-sm font-Mont text-dark-100 text-center'>{data?.phone || "N/A"}</p>
                 </td>
@@ -120,6 +123,12 @@ const Sellers = ({ allSellers, loading, userActionLoading, setUserActionLoading 
                   {/* <div className='text-center'>
                       <p className='text-sm font-Mont text-dark-100 capitalize'>{data?.role}</p>
                   </div> */}
+                </td>
+                <td className='h-[70px] px-4'>
+                    <p className='text-sm font-Mont text-dark-100 whitespace-nowrap text-center'>{data?.bank_name || "N/A"}</p>
+                </td>
+                <td className='h-[70px] px-4'>
+                    <p className='text-sm font-Mont text-dark-100 whitespace-nowrap text-center'>{data?.account_number || "N/A"}</p>
                 </td>
                 {/* <td className='h-[70px] px-4'>
                   <div className={`rounded-lg h-8 flex mx-auto justify-center items-center ${!data.status && 'w-[99px]  bg-[#FFC60029]'} ${data.status  && ' w-[99px] bg-[#ECFDF5]'} `}>

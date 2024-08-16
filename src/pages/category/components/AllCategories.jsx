@@ -89,7 +89,7 @@ const allCategories = ({ loading, allCategory, handleText, deleteLoading, setDel
                 </th>
               </tr>
 
-              {allCategory?.length > 0 ? allCategory?.map((data, index) =>  {
+              {currentData?.length > 0 ? currentData?.map((data, index) =>  {
                 return (
                     <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100'>
                         <td className='h-[70px] px-4'>

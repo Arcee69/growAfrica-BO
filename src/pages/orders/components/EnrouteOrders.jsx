@@ -56,6 +56,10 @@ const EnrouteOrders = ({ allEnrouteOrders, loading }) => {
     const currentData = allEnrouteOrders?.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(allEnrouteOrders?.length / perPage);
 
+    const filteredOrders = currentData?.filter((item) => 
+      item?.id.toLowerCase().includes(text.toLowerCase()) || ""
+    )
+
 
     //Change Page 
     const handlePageClick = (event) => {
@@ -79,7 +83,7 @@ const EnrouteOrders = ({ allEnrouteOrders, loading }) => {
           />
           <CiSearch className='w-[18px] h-[18px] text-[#8B909A]'/>
         </div>
-        <div className='w-[200px] h-[40px] bg-[#fff] p-2 flex items-center justify-between rounded'>
+        <div className='w-[200px] h-[40px] bg-[#fff] p-2 flex items-center hidden justify-between rounded'>
           <p className='text-[#8B909A] font-Hat text-[15px]'>Filter by date range</p>
           <IoIosArrowDown className='w-4 h-4 text-[#8B909A]'/>
         </div>
@@ -108,7 +112,7 @@ const EnrouteOrders = ({ allEnrouteOrders, loading }) => {
                   </th>
                 </tr>
 
-                {allEnrouteOrders?.length > 0 ? allEnrouteOrders?.map((data, index) => (
+                {filteredOrders?.length > 0 ? filteredOrders?.map((data, index) => (
                     <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => navigate('/orders/details', { state: data } )}>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-semibold font-Mont text-dark-100 text-left'>{`#${data?.id?.substring(0, 8)}`}</p> 

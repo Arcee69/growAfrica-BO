@@ -61,9 +61,12 @@ const AllOrders = ({ allOrders, loading }) => {
     //Get Current data
     const endOffset = itemOffset + perPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allOrders.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allOrders.length / perPage);
+    const currentData = allOrders?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(allOrders?.length / perPage);
 
+    const filteredOrders = currentData?.filter((item) => 
+      item?.id.toLowerCase().includes(text.toLowerCase()) || ""
+    )
 
     //Change Page 
     const handlePageClick = (event) => {
@@ -130,7 +133,7 @@ const AllOrders = ({ allOrders, loading }) => {
           />
           <CiSearch className='w-[18px] h-[18px] text-[#8B909A]'/>
         </div>
-        <div className='w-[200px] h-[40px] bg-[#fff] p-2 flex items-center justify-between rounded'>
+        <div className='w-[200px] h-[40px] bg-[#fff] p-2 flex items-center hidden justify-between rounded'>
           <p className='text-[#8B909A] font-Hat text-[15px]'>Filter by date range</p>
           <IoIosArrowDown className='w-4 h-4 text-[#8B909A]'/>
         </div>
@@ -162,7 +165,7 @@ const AllOrders = ({ allOrders, loading }) => {
                   </th>
                 </tr>
 
-                {allOrders?.length > 0 ? allOrders?.map((data, index) => (
+                {filteredOrders?.length > 0 ? filteredOrders?.map((data, index) => (
                     <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => navigationCheck(data)}>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-semibold font-Mont text-dark-100 text-left'>{`#${data?.id?.substring(0, 8)}`}</p> 

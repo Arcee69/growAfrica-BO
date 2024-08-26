@@ -34,6 +34,12 @@ const AllPendingKycs = ({ allPendingKyc, loading, setUserActionLoading, userActi
     const currentData = allPendingKyc?.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(allPendingKyc?.length / perPage);
 
+    const filteredKyc = currentData?.filter((item) => 
+      item?.first_name?.toLowerCase().includes(text.toLowerCase()) || ""
+    )
+
+
+
 
     //Change Page 
     const handlePageClick = (event) => {
@@ -46,22 +52,22 @@ const AllPendingKycs = ({ allPendingKyc, loading, setUserActionLoading, userActi
 
   return (
     <div className='mt-6'>
-      {/* <div className='flex items-center justify-between'>
+      <div className='flex items-center justify-between'>
         <div className='w-[200px] h-[40px] bg-[#fff] flex items-center justify-between rounded p-2'>
           <input 
             name='search' 
             type='text' 
-            placeholder='Search by customer id'
+            placeholder='Search by Name'
             onChange={(e) => handleText(e)} 
             className='outline-none w-[146px]'
           />
           <CiSearch className='w-[18px] h-[18px] text-[#8B909A]'/>
         </div>
-        <div className='w-[200px] h-[40px] bg-[#fff] p-2 flex items-center justify-between rounded'>
+        <div className='w-[200px] h-[40px] bg-[#fff] p-2 flex invisible items-center justify-between rounded'>
           <p className='text-[#8B909A] font-Hat text-[15px]'>Filter by Capacity</p>
           <IoIosArrowDown className='w-4 h-4 text-[#8B909A]'/>
         </div>
-      </div> */}
+      </div>
 
       {
         loading || userActionLoading ?
@@ -87,7 +93,7 @@ const AllPendingKycs = ({ allPendingKyc, loading, setUserActionLoading, userActi
               </th>
             </tr>
 
-            {currentData?.length > 0 ? currentData?.map((data, index) => (
+            {filteredKyc?.length > 0 ? filteredKyc?.map((data, index) => (
                 <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' > {/* onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))} */}
                     <td className='h-[70px] px-4'>
                         <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`${data?.first_name} ${data?.last_name}`}</p> 

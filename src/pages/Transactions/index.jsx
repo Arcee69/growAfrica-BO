@@ -6,6 +6,7 @@ import { api } from '../../services/api'
 import { appUrls } from '../../services/urls'
 
 import Empty from "../../assets/png/empty.png"
+import { CiSearch } from 'react-icons/ci'
 
 const Transactions = () => {
     const [allTransactions, setAllTransactions] = useState([])
@@ -13,7 +14,8 @@ const Transactions = () => {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10)
     const [itemOffset, setItemOffset] = useState(0);
-    const [totalTransactions, setTotalTransaction] = useState(0)
+    const [totalTransactions, setTotalTransaction] = useState(0);
+    const [text, setText] = useState("")
 
     //Get Current data
     const endOffset = itemOffset + perPage;
@@ -21,6 +23,10 @@ const Transactions = () => {
     const currentData = allTransactions?.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(allTransactions?.length / perPage);
    
+    const filteredTransaction = currentData?.filter((item) => 
+        item?.user?.account_name?.toLowerCase().includes(text.toLowerCase()) || ""
+      )
+  
    
     //Change Page 
     const handlePageClick = (event) => {
@@ -59,6 +65,8 @@ const Transactions = () => {
     
     console.log(aggregateTotalAmount(allTransactions)); // Output: 61000
 
+    const handleText = (e) => setText(e.target.value)
+
   return (
     <div className='p-8'>
         <div className='flex items-center justify-between'>
@@ -90,6 +98,16 @@ const Transactions = () => {
                 </div>
             }
         </div>
+        <div className='w-[200px] h-[40px] bg-[#fff] mt-5 flex items-center justify-between rounded p-2'>
+          <input 
+            name='search' 
+            type='text' 
+            placeholder='Search transactions'
+            onChange={(e) => handleText(e)} 
+            className='outline-none w-[146px]'
+          />
+          <CiSearch className='w-[18px] h-[18px] text-[#8B909A]'/>
+        </div>
         {
             loading ?
             <Skeleton  variant="rectangular" width={1080} height={1000} style={{ backgroundColor: 'rgba(0,0,0, 0.06)', marginTop: "20px" }} />
@@ -117,7 +135,7 @@ const Transactions = () => {
                         </th>
                     </tr>
 
-                    {allTransactions?.length > 0 ? allTransactions?.map((data, index) =>  {
+                    {filteredTransaction?.length > 0 ? filteredTransaction?.map((data, index) =>  {
                         return (
                             <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => {setOpenAddImages(true); setProductData(data)}}>
                                 <td className='h-[70px] px-4'>

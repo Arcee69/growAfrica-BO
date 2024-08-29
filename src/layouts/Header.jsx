@@ -33,8 +33,8 @@ const Header = () => {
             <GiHamburgerMenu className="text-[#000] cursor-pointer" />
         </div>
         <div className='flex items-center gap-4'>
-            <img src={Search} alt='search' className='w-[40px] h-[40px]'/>
-            <img src={Notification} alt='notification' className='w-[40px] h-[40px]'/>
+            <img src={Search} alt='search' className='w-[40px] invisible h-[40px]'/>
+            <img src={Notification} alt='notification' className='w-[40px] invisible h-[40px]'/>
             <div 
                 className="w-[218px] h-[40px] bg-[#EDF2F780] rounded-2xl flex justify-between items-center p-3"
                 id="header-menu"

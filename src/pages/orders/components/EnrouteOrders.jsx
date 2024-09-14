@@ -51,19 +51,20 @@ const EnrouteOrders = ({ allEnrouteOrders, loading }) => {
 
 
     //Get Current data
-    const endOffset = itemOffset + perPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allEnrouteOrders?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allEnrouteOrders?.length / perPage);
-
-    const filteredOrders = currentData?.filter((item) => 
+    const filteredOrders = allEnrouteOrders?.filter((item) => 
       item?.id.toLowerCase().includes(text.toLowerCase()) || ""
     )
+
+    const endOffset = itemOffset + perPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    const currentData = filteredOrders?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredOrders?.length / perPage);
+
 
 
     //Change Page 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * perPage) % allEnrouteOrders?.length;
+        const newOffset = (event.selected * perPage) % filteredOrders?.length;
         console.log(
           `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
@@ -112,7 +113,7 @@ const EnrouteOrders = ({ allEnrouteOrders, loading }) => {
                   </th>
                 </tr>
 
-                {filteredOrders?.length > 0 ? filteredOrders?.map((data, index) => (
+                {currentData?.length > 0 ? currentData?.map((data, index) => (
                     <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => navigate('/orders/details', { state: data } )}>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-semibold font-Mont text-dark-100 text-left'>{`#${data?.id?.substring(0, 8)}`}</p> 

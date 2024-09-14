@@ -30,24 +30,27 @@ const AllAdmins = ({ allAdmins, loading, setUserActionLoading, userActionLoading
   const handleText = (e) => setText(e.target.value)
 
     //Get Current data
+
+    const filteredUsers = allAdmins?.filter((item) => 
+      item?.first_name?.toLowerCase().includes(text.toLowerCase()) || ""
+    )
+
     const endOffset = itemOffset + perPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allAdmins?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allAdmins?.length / perPage);
+    const currentData = filteredUsers?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredUsers?.length / perPage);
 
 
     //Change Page 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * perPage) % allAdmins?.length;
+        const newOffset = (event.selected * perPage) % filteredUsers?.length;
         console.log(
           `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
         setItemOffset(newOffset);
       };
 
-      const filteredUsers = currentData?.filter((item) => 
-        item?.first_name?.toLowerCase().includes(text.toLowerCase()) || ""
-      )
+    
 
   return (
     <div className='mt-6'>
@@ -95,7 +98,7 @@ const AllAdmins = ({ allAdmins, loading, setUserActionLoading, userActionLoading
               </th>
             </tr>
 
-            {filteredUsers?.length > 0 ? filteredUsers?.map((data, index) => (
+            {currentData?.length > 0 ? currentData?.map((data, index) => (
                 <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' > {/* onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))} */}
                     <td className='h-[70px] px-4'>
                         <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`${data?.first_name} ${data?.last_name}`}</p> 

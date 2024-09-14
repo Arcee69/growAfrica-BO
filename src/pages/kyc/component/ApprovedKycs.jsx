@@ -28,20 +28,23 @@ const ApprovedKycs = ({ allApprovedKyc, loading, setUserActionLoading, userActio
 
   console.log(allApprovedKyc, "allApprovedKyc")
 
+  const filteredKyc = allApprovedKyc?.filter((item) => 
+    item?.first_name?.toLowerCase().includes(text.toLowerCase()) ||
+    item?.last_name?.toLowerCase().includes(text.toLowerCase()) || ""
+    )
+
     //Get Current data
     const endOffset = itemOffset + perPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allApprovedKyc?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allApprovedKyc?.length / perPage);
+    const currentData = filteredKyc?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredKyc?.length / perPage);
 
     
-    const filteredKyc = currentData?.filter((item) => 
-      item?.first_name?.toLowerCase().includes(text.toLowerCase()) || ""
-    )
+   
 
     //Change Page 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * perPage) % allApprovedKyc?.length;
+        const newOffset = (event.selected * perPage) % filteredKyc?.length;
         console.log(
           `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
@@ -91,7 +94,7 @@ const ApprovedKycs = ({ allApprovedKyc, loading, setUserActionLoading, userActio
               </th>
             </tr>
 
-            {filteredKyc?.length > 0 ? filteredKyc?.map((data, index) => (
+            {currentData?.length > 0 ? currentData?.map((data, index) => (
                 <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' > {/* onClick={() => navigate('/customers/details', { state: data }, window.scroll(0, 0))} */}
                     <td className='h-[70px] px-4'>
                         <p className='text-sm font-semibold font-Mont text-dark-100 text-center'>{`${data?.first_name} ${data?.last_name}`}</p> 

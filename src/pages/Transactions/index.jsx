@@ -18,19 +18,20 @@ const Transactions = () => {
     const [text, setText] = useState("")
 
     //Get Current data
-    const endOffset = itemOffset + perPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentData = allTransactions?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(allTransactions?.length / perPage);
-   
-    const filteredTransaction = currentData?.filter((item) => 
+    const filteredTransaction = allTransactions?.filter((item) => 
         item?.user?.account_name?.toLowerCase().includes(text.toLowerCase()) || ""
       )
+
+    const endOffset = itemOffset + perPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    const currentData = filteredTransaction?.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredTransaction?.length / perPage);
+   
   
    
     //Change Page 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * perPage) % allTransactions?.length;
+        const newOffset = (event.selected * perPage) % filteredTransaction?.length;
         console.log(
             `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
@@ -135,7 +136,7 @@ const Transactions = () => {
                         </th>
                     </tr>
 
-                    {filteredTransaction?.length > 0 ? filteredTransaction?.map((data, index) =>  {
+                    {currentData?.length > 0 ? currentData?.map((data, index) =>  {
                         return (
                             <tr key={index} className='bg-white h-[56px] border-t cursor-pointer border-grey-100' onClick={() => {setOpenAddImages(true); setProductData(data)}}>
                                 <td className='h-[70px] px-4'>

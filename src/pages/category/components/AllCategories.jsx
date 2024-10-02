@@ -32,14 +32,6 @@ const allCategories = ({ loading, allCategory, handleText, deleteLoading, setDel
         setItemOffset(newOffset);
     };
 
-    // {
-    //     "id": "091289d6-5992-4a9f-b9b9-603aa455dcdd",
-    //     "name": "Food & Beverages",
-    //     "image": "",
-    //     "created_at": "2024-07-06T17:55:27.000000Z",
-    //     "updated_at": "2024-09-30T21:07:50.000000Z"
-    // }
-
     const deleteCategory = async (item) => {
         console.log(item, "zanku")
         setDeleteLoading(true)

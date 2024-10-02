@@ -19,7 +19,7 @@ const Transactions = () => {
 
     //Get Current data
     const filteredTransaction = allTransactions?.filter((item) => 
-        item?.user?.account_name?.toLowerCase().includes(text.toLowerCase()) || ""
+        item?.user?.first_name?.toLowerCase().includes(text.toLowerCase()) || ""
       )
 
     const endOffset = itemOffset + perPage;

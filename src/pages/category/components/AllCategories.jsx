@@ -32,6 +32,14 @@ const allCategories = ({ loading, allCategory, handleText, deleteLoading, setDel
         setItemOffset(newOffset);
     };
 
+    // {
+    //     "id": "091289d6-5992-4a9f-b9b9-603aa455dcdd",
+    //     "name": "Food & Beverages",
+    //     "image": "",
+    //     "created_at": "2024-07-06T17:55:27.000000Z",
+    //     "updated_at": "2024-09-30T21:07:50.000000Z"
+    // }
+
     const deleteCategory = async (item) => {
         console.log(item, "zanku")
         setDeleteLoading(true)
@@ -82,6 +90,9 @@ const allCategories = ({ loading, allCategory, handleText, deleteLoading, setDel
                     Category Name
                 </th>
                 <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
+                    Category Image
+                </th>
+                <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
                     Created Date
                 </th>
                 <th className="font-medium font-mont text-[#8B909A] px-4 text-[13px] uppercase text-left">
@@ -97,7 +108,10 @@ const allCategories = ({ loading, allCategory, handleText, deleteLoading, setDel
                         </td>
                      
                         <td className='h-[70px] px-4'>
-                            <p className='text-sm font-Mont text-dark-100 text-left'>{data?.name || "N/A"}</p>
+                            <p className='text-sm font-Mont text-dark-100 rounded-full text-left'>{data?.name || "N/A"}</p>
+                        </td>
+                        <td className='h-[70px] px-4'>
+                            <img src={data?.image} alt='Category_image' className='w-10 h-10' />
                         </td>
                         <td className='h-[70px] px-4'>
                             <p className='text-sm font-Mont text-dark-100 text-left'>{new Date(data?.created_at).toLocaleDateString()}</p>
